@@ -44,23 +44,51 @@ foreach(incdir ${GNURADIO_RUNTIME_INCLUDE_DIRS})
     list(APPEND GR_SWIG_INCLUDE_DIRS ${incdir}/gnuradio/swig)
 endforeach(incdir)
 
-set(GR_SWIG_LIBRARIES gnuradio-sattools)
-set(GR_SWIG_DOC_FILE ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig_doc.i)
-set(GR_SWIG_DOC_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../include)
+if(${INCLUDE_ZMQ_BLOCK})
+    set(INCLUDE_ZMQ_BLOCK_BOOL_VAL 1)
+else()
+    set(INCLUDE_ZMQ_BLOCK_BOOL_VAL 0)
+endif()
 
-GR_SWIG_MAKE(sattools_swig sattools_swig.i)
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/sattools_swig.py.in
+    ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig.py
+@ONLY)
 
-########################################################################
-# Install the build swig module
-########################################################################
-GR_SWIG_INSTALL(TARGETS sattools_swig DESTINATION ${GR_PYTHON_DIR}/sattools)
+if(${INCLUDE_ZMQ_BLOCK})
+    set(SATTOOLS_SWIG_FILES
+        sattools_swig0
+        sattools_zmq_swig
+    )
+else()
+    set(SATTOOLS_SWIG_FILES
+        sattools_swig0
+    )
+endif()
 
-########################################################################
-# Install swig .i files for development
-########################################################################
+foreach(swigfile ${SATTOOLS_SWIG_FILES})
+  set(GR_SWIG_DOC_FILE ${CMAKE_CURRENT_BINARY_DIR}/${swigfile}_doc.i)
+  set(GR_SWIG_DOC_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../include)
+
+  set(GR_SWIG_LIBRARIES gnuradio-sattools)
+  GR_SWIG_MAKE(${swigfile} ${swigfile}.i)
+
+  GR_SWIG_INSTALL(TARGETS ${swigfile} DESTINATION ${GR_PYTHON_DIR}/sattools)
+
+  list(APPEND SWIGFILES ${swigfile}.i)
+  list(APPEND SWIGDOCFILES ${CMAKE_CURRENT_BINARY_DIR}/${swigfile}_doc.i)
+endforeach(swigfile)
+
 install(
     FILES
-    sattools_swig.i
-    ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig_doc.i
+    ${SWIGFILES}
+    ${SWIGDOCFILES}
     DESTINATION ${GR_INCLUDE_DIR}/sattools/swig
+)
+
+# Install the Python file that pulls in the swig built files.
+GR_PYTHON_INSTALL(
+    FILES ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig.py
+    DESTINATION ${GR_PYTHON_DIR}/sattools
+    COMPONENT "sattools_python"
 )
