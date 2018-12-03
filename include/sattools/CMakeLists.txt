@@ -23,7 +23,6 @@
 ########################################################################
 install(FILES
     api.h
-    csp_zmqhub_pub_sink.h
     reed_solomon_ccsds_decode.h
     async_crc32c.h
     golay24_decode.h

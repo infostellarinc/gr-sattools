@@ -17,9 +17,7 @@
 # along with GNU Radio; see the file COPYING.  If not, write to
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
-
 install(FILES
-    sattools_csp_zmqhub_pub_sink.xml
     sattools_reed_solomon_ccsds_decode.xml
     sattools_async_crc32c.xml
     sattools_golay24_decode.xml

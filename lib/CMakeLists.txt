@@ -28,9 +28,7 @@ include_directories(
     ${ZEROMQ_INCLUDE_DIRS}
 )
 link_directories(${Boost_LIBRARY_DIRS})
-
 list(APPEND sattools_sources
-    csp_zmqhub_pub_sink_impl.cc
     reed_solomon_ccsds_decode_impl.cc
     rs/decode_rs_8.c
     async_crc32c_impl.cc
