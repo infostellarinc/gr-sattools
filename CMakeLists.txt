@@ -22,7 +22,6 @@
 # Project setup
 ########################################################################
 cmake_minimum_required(VERSION 2.6)
-cmake_policy(SET CMP0012 NEW)
 project(gr-sattools CXX C)
 enable_testing()
 
@@ -153,7 +152,8 @@ endif()
 ########################################################################
 # Option to include zmq block
 ########################################################################
-option(INCLUDE_ZMQ_BLOCK "Include blocks that need ZMQ" ON)
+option(INCLUDE_ZMQ_BLOCK
+    "Include blocks that need ZMQ" ON)
 
 if(${INCLUDE_ZMQ_BLOCK})
     find_package(ZeroMQ)

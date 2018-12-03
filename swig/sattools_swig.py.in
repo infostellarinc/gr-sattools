@@ -1,5 +1,0 @@
-#! /usr/bin/python
-
-from sattools_swig0 import *
-if @INCLUDE_ZMQ_BLOCK_BOOL_VAL@:
-    from sattools_zmq_swig import *

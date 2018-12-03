@@ -5,9 +5,10 @@
 %include "gnuradio.i"			// the common stuff
 
 //load generated python docstrings
-%include "sattools_swig0_doc.i"
+%include "sattools_swig_doc.i"
 
 %{
+#include "sattools/csp_zmqhub_pub_sink.h"
 #include "sattools/reed_solomon_ccsds_decode.h"
 #include "sattools/async_crc32c.h"
 #include "sattools/golay24_decode.h"
@@ -15,6 +16,8 @@
 %}
 
 
+%include "sattools/csp_zmqhub_pub_sink.h"
+GR_SWIG_BLOCK_MAGIC2(sattools, csp_zmqhub_pub_sink);
 %include "sattools/reed_solomon_ccsds_decode.h"
 GR_SWIG_BLOCK_MAGIC2(sattools, reed_solomon_ccsds_decode);
 %include "sattools/async_crc32c.h"
