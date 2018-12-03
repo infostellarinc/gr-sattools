@@ -52,14 +52,14 @@ endif()
 
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/sattools_swig.i.in
-    ${CMAKE_CURRENT_SOURCE_DIR}/sattools_swig.i
+    ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig.i
 @ONLY)
 
 set(GR_SWIG_LIBRARIES gnuradio-sattools)
 set(GR_SWIG_DOC_FILE ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig_doc.i)
 set(GR_SWIG_DOC_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-GR_SWIG_MAKE(sattools_swig sattools_swig.i)
+GR_SWIG_MAKE(sattools_swig ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig.i)
 
 ########################################################################
 # Install the build swig module
@@ -71,7 +71,7 @@ GR_SWIG_INSTALL(TARGETS sattools_swig DESTINATION ${GR_PYTHON_DIR}/sattools)
 ########################################################################
 install(
     FILES
-    sattools_swig.i
+    ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig.i
     ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig_doc.i
     DESTINATION ${GR_INCLUDE_DIR}/sattools/swig
 )
