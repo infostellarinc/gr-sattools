@@ -153,10 +153,10 @@ endif()
 ########################################################################
 # Option to include zmq block
 ########################################################################
-option(INCLUDE_ZMQ_BLOCK
+option(ENABLE_SATTOOLS_ZEROMQ
     "Include blocks that need ZMQ" ON)
 
-if(${INCLUDE_ZMQ_BLOCK})
+if(${ENABLE_SATTOOLS_ZEROMQ})
     find_package(ZeroMQ)
 endif()
 

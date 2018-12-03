@@ -43,7 +43,7 @@ list(APPEND sattools_sources
     asm_golay_decoder_impl.cc
 )
 
-if(${INCLUDE_ZMQ_BLOCK})
+if(${ENABLE_SATTOOLS_ZEROMQ})
 	list(APPEND sattools_sources ${sattools_debug_sources})
 endif()
 

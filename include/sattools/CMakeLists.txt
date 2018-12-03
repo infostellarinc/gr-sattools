@@ -34,7 +34,7 @@ list(APPEND HEADER_FILES
     asm_golay_decoder.h
 )
 
-if(${INCLUDE_ZMQ_BLOCK})
+if(${ENABLE_SATTOOLS_ZEROMQ})
 	list(APPEND HEADER_FILES ${DEBUG_HEADER_FILES})
 endif()
 

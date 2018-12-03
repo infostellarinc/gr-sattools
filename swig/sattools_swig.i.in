@@ -8,7 +8,7 @@
 %include "sattools_swig_doc.i"
 
 %{
-@INCLUDE_ZMQ_BLOCKS_DEFINE_STATEMENT@
+@ENABLE_SATTOOLS_ZEROMQ_DEFINE_STATEMENT@
 #ifdef _INCLUDE_ZMQ
 #include "sattools/csp_zmqhub_pub_sink.h"
 #endif
@@ -18,7 +18,7 @@
 #include "sattools/asm_golay_decoder.h"
 %}
 
-@INCLUDE_ZMQ_BLOCKS_DEFINE_STATEMENT@
+@ENABLE_SATTOOLS_ZEROMQ_DEFINE_STATEMENT@
 #ifdef _INCLUDE_ZMQ
 %include "sattools/csp_zmqhub_pub_sink.h"
 GR_SWIG_BLOCK_MAGIC2(sattools, csp_zmqhub_pub_sink);

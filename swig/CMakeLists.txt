@@ -44,10 +44,10 @@ foreach(incdir ${GNURADIO_RUNTIME_INCLUDE_DIRS})
     list(APPEND GR_SWIG_INCLUDE_DIRS ${incdir}/gnuradio/swig)
 endforeach(incdir)
 
-if(${INCLUDE_ZMQ_BLOCK})
-    set(INCLUDE_ZMQ_BLOCKS_DEFINE_STATEMENT "#define _INCLUDE_ZMQ 1")
+if(${ENABLE_SATTOOLS_ZEROMQ})
+    set(ENABLE_SATTOOLS_ZEROMQ_DEFINE_STATEMENT "#define _INCLUDE_ZMQ 1")
 else()
-    set(INCLUDE_ZMQ_BLOCKS_DEFINE_STATEMENT "")
+    set(ENABLE_SATTOOLS_ZEROMQ_DEFINE_STATEMENT "")
 endif()
 
 configure_file(

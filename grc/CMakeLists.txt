@@ -18,7 +18,7 @@
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
 
-list(APPEND debug_blocks
+list(APPEND zmq_blocks
     sattools_csp_zmqhub_pub_sink.xml
 )
 
@@ -29,8 +29,8 @@ list(APPEND enabled_blocks
     sattools_asm_golay_decoder.xml
 )
 
-if(${INCLUDE_ZMQ_BLOCK})
-	list(APPEND enabled_blocks ${debug_blocks})
+if(${ENABLE_SATTOOLS_ZEROMQ})
+	list(APPEND enabled_blocks ${zmq_blocks})
 endif()
 
 install(FILES
