@@ -149,7 +149,15 @@ if(NOT CPPUNIT_FOUND)
     message(FATAL_ERROR "CppUnit required to compile sattools")
 endif()
 
-find_package(ZeroMQ)
+########################################################################
+# Option to include zmq block
+########################################################################
+option(INCLUDE_ZMQ_BLOCK
+    "Include blocks that need ZMQ" ON)
+
+if(${INCLUDE_ZMQ_BLOCK})
+    find_package(ZeroMQ)
+endif()
 
 ########################################################################
 # Setup doxygen option
