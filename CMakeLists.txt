@@ -22,6 +22,7 @@
 # Project setup
 ########################################################################
 cmake_minimum_required(VERSION 2.6)
+cmake_policy(SET CMP0012 NEW)
 project(gr-sattools CXX C)
 enable_testing()
 

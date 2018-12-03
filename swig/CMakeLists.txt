@@ -44,6 +44,17 @@ foreach(incdir ${GNURADIO_RUNTIME_INCLUDE_DIRS})
     list(APPEND GR_SWIG_INCLUDE_DIRS ${incdir}/gnuradio/swig)
 endforeach(incdir)
 
+if(${INCLUDE_ZMQ_BLOCK})
+    set(INCLUDE_ZMQ_BLOCKS_DEFINE_STATEMENT "#define _INCLUDE_ZMQ 1")
+else()
+    set(INCLUDE_ZMQ_BLOCKS_DEFINE_STATEMENT "")
+endif()
+
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/sattools_swig.i.in
+    ${CMAKE_CURRENT_SOURCE_DIR}/sattools_swig.i
+@ONLY)
+
 set(GR_SWIG_LIBRARIES gnuradio-sattools)
 set(GR_SWIG_DOC_FILE ${CMAKE_CURRENT_BINARY_DIR}/sattools_swig_doc.i)
 set(GR_SWIG_DOC_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/../include)
